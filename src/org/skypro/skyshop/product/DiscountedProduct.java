@@ -1,6 +1,6 @@
 package org.skypro.skyshop.product;
 
-public class DiscountedProduct extends Product{
+public class DiscountedProduct extends Product {
     private int defaultPrice;
     private int discount;
     public DiscountedProduct(String name, int defaultPrice, int discount) {
@@ -22,5 +22,20 @@ public class DiscountedProduct extends Product{
     @Override
     public boolean isSpecial() {
         return true;
+    }
+
+    @Override
+    public String searchTerm() {
+        return toString() + " - " + typeContent();
+    }
+
+    @Override
+    public String typeContent() {
+        return "PRODUCT";
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return getName() + " - " + typeContent();
     }
 }

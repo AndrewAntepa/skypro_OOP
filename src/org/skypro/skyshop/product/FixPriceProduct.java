@@ -20,4 +20,19 @@ public class FixPriceProduct extends Product{
     public boolean isSpecial() {
         return true;
     }
+
+    @Override
+    public String searchTerm() {
+        return toString() + " - " + typeContent();
+    }
+
+    @Override
+    public String typeContent() {
+        return "PRODUCT";
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return getName() + " - " + typeContent();
+    }
 }
