@@ -33,11 +33,15 @@ public class ProductBasket {
 
     public void printBasket() {
         StringBuilder basketPrint = new StringBuilder();
+        int countSpecial = 0;
         for (Product product : basket) {
             if(product == null) continue;
-            basketPrint.append(product.getName()).append(": ").append(product.getPrice()).append("\n");
+            basketPrint.append(product).append("\n");
+            if(product.isSpecial()) countSpecial++;
         }
-        System.out.println(basketPrint);
+        if(countSpecial != 0) {
+            basketPrint.append("Специальных товаров: ").append(countSpecial).append("\n");
+        }
         if (basketPrint.isEmpty()) {
             basketPrint.append("В корзине пусто");
         }
