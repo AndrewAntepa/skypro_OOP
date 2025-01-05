@@ -12,7 +12,7 @@ public class SearchEngine {
         String [] results = new String[5];
         int countResults = 0;
         for (int i = 0; i < count; i++) {
-            if (searchables[i].searchRequest().contains(searchTerm)) {
+            if (searchables[i].getSearchTerm().contains(searchTerm)) {
                 results[countResults++] = searchables[i].getStringRepresentation();
             }
             if(countResults == 5) break;

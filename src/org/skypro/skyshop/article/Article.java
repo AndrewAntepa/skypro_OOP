@@ -17,13 +17,13 @@ public class Article implements Searchable {
     }
 
     @Override
-    public String searchRequest() {
-        return toString() + "\nТип - ARTICLE\n";
+    public String getSearchTerm() {
+        return this + " " + getTypeContent();
     }
 
     @Override
-    public String typeContent() {
-        return "ARTICLE\n";
+    public String getTypeContent() {
+        return "ARTICLE";
     }
 
     @Override

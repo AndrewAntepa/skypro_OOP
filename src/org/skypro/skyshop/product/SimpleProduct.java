@@ -20,19 +20,4 @@ public class SimpleProduct extends Product{
     public boolean isSpecial() {
         return false;
     }
-
-    @Override
-    public String searchRequest() {
-        return toString() + " - " + typeContent();
-    }
-
-    @Override
-    public String typeContent() {
-        return "PRODUCT";
-    }
-
-    @Override
-    public String getStringRepresentation() {
-        return getName() + " - " + typeContent();
-    }
 }
