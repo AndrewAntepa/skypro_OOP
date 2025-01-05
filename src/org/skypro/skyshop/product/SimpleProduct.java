@@ -22,7 +22,7 @@ public class SimpleProduct extends Product{
     }
 
     @Override
-    public String searchTerm() {
+    public String searchRequest() {
         return toString() + " - " + typeContent();
     }
 

@@ -17,7 +17,7 @@ public class Article implements Searchable {
     }
 
     @Override
-    public String searchTerm() {
+    public String searchRequest() {
         return toString() + "\nТип - ARTICLE\n";
     }
 
@@ -29,5 +29,13 @@ public class Article implements Searchable {
     @Override
     public String getStringRepresentation() {
         return tittle + "\nТип - ARTICLE";
+    }
+
+    public String getTittle() {
+        return tittle;
+    }
+
+    public String getText() {
+        return text;
     }
 }

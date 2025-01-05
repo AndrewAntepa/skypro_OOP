@@ -25,7 +25,7 @@ public class DiscountedProduct extends Product {
     }
 
     @Override
-    public String searchTerm() {
+    public String searchRequest() {
         return toString() + " - " + typeContent();
     }
 
