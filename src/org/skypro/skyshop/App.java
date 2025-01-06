@@ -6,6 +6,7 @@ import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
+import org.skypro.skyshop.search.Searchable;
 
 public class App {
     public static void main(String[] args) {
@@ -57,22 +58,22 @@ public class App {
         searchEngine.add(article3);
         searchEngine.add(article4);
 
-        String[] searchResults = searchEngine.search("PRODUCT");
-        for (String result : searchResults) {
+        Searchable[] searchResults = searchEngine.search("PRODUCT");
+        for (Searchable result : searchResults) {
             if(result == null) continue;
             System.out.println(result);
         }
         System.out.println();
 
         searchResults = searchEngine.search("ARTICLE");
-        for (String result : searchResults) {
+        for (Searchable result : searchResults) {
             if(result == null) continue;
             System.out.println(result);
         }
         System.out.println();
 
         searchResults = searchEngine.search("Кола");
-        for (String result : searchResults) {
+        for (Searchable result : searchResults) {
             if(result == null) continue;
             System.out.println(result);
         }

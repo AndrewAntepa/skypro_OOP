@@ -8,12 +8,12 @@ public class SearchEngine {
         searchables = new Searchable[size];
     }
 
-    public String[] search(String searchTerm) {
-        String [] results = new String[5];
+    public Searchable[] search(String searchTerm) {
+        Searchable [] results = new Searchable[5];
         int countResults = 0;
         for (int i = 0; i < count; i++) {
             if (searchables[i].getSearchTerm().contains(searchTerm)) {
-                results[countResults++] = searchables[i].getStringRepresentation();
+                results[countResults++] = searchables[i];
             }
             if(countResults == 5) break;
         }
