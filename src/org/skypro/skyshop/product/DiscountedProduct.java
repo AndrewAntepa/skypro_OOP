@@ -1,6 +1,6 @@
 package org.skypro.skyshop.product;
 
-public class DiscountedProduct extends Product{
+public class DiscountedProduct extends Product {
     private int defaultPrice;
     private int discount;
     public DiscountedProduct(String name, int defaultPrice, int discount) {
