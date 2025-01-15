@@ -9,11 +9,15 @@ import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
         SimpleProduct product1 = new SimpleProduct("Сыр", 100);
         DiscountedProduct product2 = new DiscountedProduct("Молоко", 500, 20);
         DiscountedProduct product3 = new DiscountedProduct("Хлеб", 300, 40);
+        SimpleProduct product3_2 = new SimpleProduct("Хлеб", 300);
         FixPriceProduct product4 = new FixPriceProduct("Вода");
         FixPriceProduct product5 = new FixPriceProduct("Кола");
         SimpleProduct product6 = new SimpleProduct("Кола", 600);
@@ -28,6 +32,19 @@ public class App {
 
         basket.printBasket();
 
+        basket.addProduct(product3_2);
+        List removedProducts = basket.removeProduct("Хлеб");
+        basket.printBasket();
+        System.out.println("Удаленные товары: " + removedProducts);
+
+        List removedProductsTry = basket.removeProduct("Торт");
+        if (removedProductsTry.isEmpty()) {
+            System.out.println("Список пуст");
+        } else {
+            basket.printBasket();
+        }
+        System.out.println("Удаленные товары: " + removedProductsTry);
+
         System.out.println("Цена корзины: " + basket.fullPrice() + " руб.");
 
         System.out.println(basket.isHasProduct("Кола"));
@@ -41,7 +58,7 @@ public class App {
 
         System.out.println("\n===SearchEngine===\n");
 
-        SearchEngine searchEngine = new SearchEngine(10);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(product1);
         searchEngine.add(product2);
         searchEngine.add(product3);
@@ -59,7 +76,7 @@ public class App {
         searchEngine.add(article3);
         searchEngine.add(article4);
 
-        Searchable[] searchResults = searchEngine.search("PRODUCT");
+        ArrayList<Searchable> searchResults = searchEngine.search("PRODUCT");
         for (Searchable result : searchResults) {
             if (result == null) continue;
             System.out.println(result);

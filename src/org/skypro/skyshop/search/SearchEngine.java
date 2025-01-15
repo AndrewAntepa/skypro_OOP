@@ -2,28 +2,28 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.exception.BestResultNotFoundException;
 
-public class SearchEngine {
-    Searchable[] searchables;
-    int count = 0;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
-    public SearchEngine(int size) {
-        searchables = new Searchable[size];
+public class SearchEngine {
+    LinkedList<Searchable> searchables;
+
+    public SearchEngine() {
+        searchables = new LinkedList<>();
     }
 
-    public Searchable[] search(String searchTerm) {
-        Searchable [] results = new Searchable[5];
-        int countResults = 0;
-        for (int i = 0; i < count; i++) {
-            if (searchables[i].getSearchTerm().contains(searchTerm)) {
-                results[countResults++] = searchables[i];
+    public ArrayList<Searchable> search(String searchTerm) {
+        ArrayList<Searchable> results = new ArrayList<>();
+        for (Searchable searchable : searchables) {
+            if (searchable.getSearchTerm().contains(searchTerm)) {
+                results.add(searchable);
             }
-            if(countResults == 5) break;
         }
         return results;
     }
 
     public void add(Searchable searchable) {
-        searchables[count++] = searchable;
+        searchables.add(searchable);
     }
 
     public Searchable getBestMatchSearchTerm(String search) throws BestResultNotFoundException {
