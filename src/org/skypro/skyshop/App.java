@@ -78,32 +78,32 @@ public class App {
         searchEngine.add(article3);
         searchEngine.add(article4);
 
-        Map<String, LinkedList<Searchable>> searchResults = searchEngine.search("PRODUCT");
-        for (Map.Entry<String, LinkedList<Searchable>> entry : searchResults.entrySet()) {
-            for(Searchable result : entry.getValue()) {
-                if (result == null) continue;
-                System.out.println(result);
-            }
+        Map<String, Searchable> searchResults = searchEngine.search("PRODUCT");
+        for (Map.Entry<String, Searchable> entry : searchResults.entrySet()) {
+//            for(Searchable result : entry.getValue()) {
+                if (entry == null) continue;
+                System.out.println(entry);
+//            }
         }
         System.out.println();
 
-        searchResults = searchEngine.search("ARTICLE");
-        for (Map.Entry<String, LinkedList<Searchable>> entry : searchResults.entrySet()) {
-            for(Searchable result : entry.getValue()) {
-                if (result == null) continue;
-                System.out.println(result);
-            }
-        }
-        System.out.println();
-
-        searchResults = searchEngine.search("Кола");
-        for (Map.Entry<String, LinkedList<Searchable>> entry : searchResults.entrySet()) {
-            for(Searchable result : entry.getValue()) {
-                if (result == null) continue;
-                System.out.println(result);
-            }
-        }
-        System.out.println();
+//        searchResults = searchEngine.search("ARTICLE");
+//        for (Map.Entry<String, LinkedList<Searchable>> entry : searchResults.entrySet()) {
+//            for(Searchable result : entry.getValue()) {
+//                if (result == null) continue;
+//                System.out.println(result);
+//            }
+//        }
+//        System.out.println();
+//
+//        searchResults = searchEngine.search("Кола");
+//        for (Map.Entry<String, LinkedList<Searchable>> entry : searchResults.entrySet()) {
+//            for(Searchable result : entry.getValue()) {
+//                if (result == null) continue;
+//                System.out.println(result);
+//            }
+//        }
+//        System.out.println();
 
 
 

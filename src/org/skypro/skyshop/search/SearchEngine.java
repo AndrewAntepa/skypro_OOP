@@ -2,10 +2,7 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.exception.BestResultNotFoundException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class SearchEngine {
     LinkedList<Searchable> searchables;
@@ -14,11 +11,11 @@ public class SearchEngine {
         searchables = new LinkedList<>();
     }
 
-    public Map<String, LinkedList<Searchable>> search(String searchTerm) {
-        Map<String, LinkedList<Searchable>> results = new HashMap<>();
+    public Map<String, Searchable> search(String searchTerm) {
+        Map<String, Searchable> results = new LinkedHashMap<>();
         for (Searchable searchable : searchables) {
             if (searchable.getSearchTerm().contains(searchTerm)) {
-                results.computeIfAbsent(searchable.getTypeContent(), k -> new LinkedList<>()).add(searchable);
+                results.putIfAbsent(searchable.getStringRepresentation(), searchable);
             }
         }
         return results;
