@@ -9,10 +9,7 @@ import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
@@ -67,33 +64,38 @@ public class App {
         searchEngine.add(product4);
         searchEngine.add(product5);
         searchEngine.add(product6);
+        searchEngine.add(product3_2);
 
         Article article1 = new Article("Название статьи 1", "Текст статьи 1");
-        Article article2 = new Article("Название статьи 2", "Текст статьи 2");
-        Article article3 = new Article("Название статьи 3", "Текст статьи 3 текст текст");
-        Article article4 = new Article("Название статьи 4", "Текст статьи 4");
+        Article article2 = new Article("Статья", "Текст статьи 2");
+        Article article3 = new Article("Название статьи 33", "Текст статьи 3 текст текст");
+        Article article4 = new Article("Название статьи", "Текст статьи 4");
+        Article article5 = new Article("Название cn", "Текст статьи 4");
+        Article article6 = new Article("Название co", "Текст статьи 4");
 
         searchEngine.add(article1);
         searchEngine.add(article2);
         searchEngine.add(article3);
         searchEngine.add(article4);
+        searchEngine.add(article5);
+        searchEngine.add(article6);
 
-        Map<String, Searchable> searchResults = searchEngine.search("PRODUCT");
-        for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
+        Set<Searchable> searchResults = searchEngine.search("PRODUCT");
+        for (Searchable result : searchResults) {
                 if (result == null) continue;
                 System.out.println(result);
         }
         System.out.println();
 
         searchResults = searchEngine.search("ARTICLE");
-        for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
+        for (Searchable result : searchResults) {
             if (result == null) continue;
             System.out.println(result);
         }
         System.out.println();
 
         searchResults = searchEngine.search("Кола");
-        for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
+        for (Searchable result : searchResults) {
             if (result == null) continue;
             System.out.println(result);
         }

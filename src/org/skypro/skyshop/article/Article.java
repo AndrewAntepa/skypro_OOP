@@ -2,7 +2,9 @@ package org.skypro.skyshop.article;
 
 import org.skypro.skyshop.search.Searchable;
 
-public class Article implements Searchable {
+import java.util.Objects;
+
+public class Article implements Searchable, Comparable<Article> {
     private String tittle;
     private String text;
 
@@ -37,5 +39,13 @@ public class Article implements Searchable {
 
     public String getText() {
         return text;
+    }
+
+
+
+    @Override
+    public int compareTo(Article o) {
+        if(tittle.length() != o.tittle.length()) return Integer.compare(o.tittle.length(), tittle.length());
+        return o.tittle.compareTo(tittle);
     }
 }

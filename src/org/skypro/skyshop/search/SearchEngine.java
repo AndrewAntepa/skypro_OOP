@@ -5,17 +5,17 @@ import org.skypro.skyshop.exception.BestResultNotFoundException;
 import java.util.*;
 
 public class SearchEngine {
-    LinkedList<Searchable> searchables;
+    Set<Searchable> searchables;
 
     public SearchEngine() {
-        searchables = new LinkedList<>();
+        searchables = new HashSet<>();
     }
 
-    public Map<String, Searchable> search(String searchTerm) {
-        Map<String, Searchable> results = new LinkedHashMap<>();
+    public Set<Searchable> search(String searchTerm) {
+        Set<Searchable> results = new TreeSet<>();
         for (Searchable searchable : searchables) {
             if (searchable.getSearchTerm().contains(searchTerm)) {
-                results.putIfAbsent(searchable.getStringRepresentation(), searchable);
+                results.add(searchable);
             }
         }
         return results;
