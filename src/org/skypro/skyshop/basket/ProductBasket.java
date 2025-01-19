@@ -2,41 +2,32 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ProductBasket {
-    private LinkedList<Product> basket;
+    private Map<String, LinkedList<Product>> basket;
 
     public ProductBasket() {
-        basket = new LinkedList<>();
+        basket = new HashMap<>();
     }
 
     public void addProduct(Product product) {
-        basket.add(product);
+        basket.computeIfAbsent(product.getName(), k -> new LinkedList<>()).add(product);
     }
 
     public List removeProduct(String name) {
-        if (basket.isEmpty()) return new ArrayList<Product>();
-        ArrayList<Product> removedProducts = new ArrayList<>();
-        Iterator<Product> iterator = basket.iterator();
-        while(iterator.hasNext()) {
-            Product p = iterator.next();
-            if(p.getName().equals(name)) {
-                removedProducts.add(p);
-                iterator.remove();
-            };
-        }
+        if (basket.isEmpty() || !basket.containsKey(name)) return new ArrayList<Product>();
+        LinkedList<Product> removedProducts = basket.remove(name);
         return removedProducts;
     }
 
     public int fullPrice() {
         if (basket.isEmpty()) return 0;
         int fullPrice = 0;
-        for (Product product : basket) {
-            fullPrice += product.getPrice();
+        for (LinkedList<Product> products : basket.values()) {
+            for(Product product : products) {
+                fullPrice += product.getPrice();
+            }
         }
         return fullPrice;
     }
@@ -44,9 +35,11 @@ public class ProductBasket {
     public void printBasket() {
         StringBuilder basketPrint = new StringBuilder();
         int countSpecial = 0;
-        for (Product product : basket) {
-            basketPrint.append(product).append("\n");
-            if(product.isSpecial()) countSpecial++;
+        for (Map.Entry<String, LinkedList<Product>> entry : basket.entrySet()) {
+            for(Product product : entry.getValue()) {
+                basketPrint.append(product).append("\n");
+                if(product.isSpecial()) countSpecial++;
+            }
         }
         if(countSpecial != 0) {
             basketPrint.append("Специальных товаров: ").append(countSpecial).append("\n");
@@ -59,13 +52,23 @@ public class ProductBasket {
 
     public boolean isHasProduct(String name) {
         if (basket.isEmpty()) return false;
-        for (Product product : basket) {
-            if (product.getName().equals(name)) return true;
-        }
-        return false;
+        return basket.containsKey(name);
     }
 
     public void deleteBasket() {
-        basket = new LinkedList<>();
+        basket.clear();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductBasket that = (ProductBasket) o;
+        return Objects.equals(basket, that.basket);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(basket);
     }
 }

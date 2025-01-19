@@ -10,7 +10,9 @@ import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -29,10 +31,10 @@ public class App {
         basket.addProduct(product4);
         basket.addProduct(product5);
         basket.addProduct(product6);
+        basket.addProduct(product3_2);
 
         basket.printBasket();
 
-        basket.addProduct(product3_2);
         List removedProducts = basket.removeProduct("Хлеб");
         basket.printBasket();
         System.out.println("Удаленные товары: " + removedProducts);
@@ -76,22 +78,22 @@ public class App {
         searchEngine.add(article3);
         searchEngine.add(article4);
 
-        ArrayList<Searchable> searchResults = searchEngine.search("PRODUCT");
-        for (Searchable result : searchResults) {
-            if (result == null) continue;
-            System.out.println(result);
+        Map<String, Searchable> searchResults = searchEngine.search("PRODUCT");
+        for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
+                if (result == null) continue;
+                System.out.println(result);
         }
         System.out.println();
 
         searchResults = searchEngine.search("ARTICLE");
-        for (Searchable result : searchResults) {
+        for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
             if (result == null) continue;
             System.out.println(result);
         }
         System.out.println();
 
         searchResults = searchEngine.search("Кола");
-        for (Searchable result : searchResults) {
+        for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
             if (result == null) continue;
             System.out.println(result);
         }
@@ -100,7 +102,7 @@ public class App {
 
 
 
-        System.out.println("Exceptions");
+        System.out.println("===Exceptions===\n");
         ProductBasket basketTryException = new ProductBasket();
 
         try {
