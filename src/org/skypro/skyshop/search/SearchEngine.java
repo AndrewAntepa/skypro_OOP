@@ -1,6 +1,6 @@
 package org.skypro.skyshop.search;
 
-import org.skypro.skyshop.comparator.MyComparator;
+import org.skypro.skyshop.comparator.TheLongestInverseOrderComparator;
 import org.skypro.skyshop.exception.BestResultNotFoundException;
 
 import java.util.*;
@@ -13,7 +13,7 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String searchTerm) {
-        Set<Searchable> results = new TreeSet<>(new MyComparator());
+        Set<Searchable> results = new TreeSet<>(new TheLongestInverseOrderComparator());
         for (Searchable searchable : searchables) {
             if (searchable.getSearchTerm().contains(searchTerm)) {
                 results.add(searchable);

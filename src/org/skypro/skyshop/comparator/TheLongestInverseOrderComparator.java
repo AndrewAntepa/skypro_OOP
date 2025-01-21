@@ -1,11 +1,10 @@
 package org.skypro.skyshop.comparator;
 
-import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.search.Searchable;
 
 import java.util.Comparator;
 
-public class MyComparator implements Comparator<Searchable> {
+public class TheLongestInverseOrderComparator implements Comparator<Searchable> {
     @Override
     public int compare(Searchable o1, Searchable o2) {
         if(o1.getStringRepresentation().length() != o2.getStringRepresentation().length())
