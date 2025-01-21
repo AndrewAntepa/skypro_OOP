@@ -4,6 +4,7 @@ import org.skypro.skyshop.comparator.TheLongestInverseOrderComparator;
 import org.skypro.skyshop.exception.BestResultNotFoundException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SearchEngine {
     Set<Searchable> searchables;
@@ -13,13 +14,8 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String searchTerm) {
-        Set<Searchable> results = new TreeSet<>(new TheLongestInverseOrderComparator());
-        for (Searchable searchable : searchables) {
-            if (searchable.getSearchTerm().contains(searchTerm)) {
-                results.add(searchable);
-            }
-        }
-        return results;
+        return searchables.stream().filter(searchable -> searchable.getSearchTerm().contains(searchTerm)).
+                collect(Collectors.toCollection(() -> new TreeSet<>(new TheLongestInverseOrderComparator())));
     }
 
     public void add(Searchable searchable) {

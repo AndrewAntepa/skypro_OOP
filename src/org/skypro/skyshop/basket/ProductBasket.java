@@ -22,25 +22,16 @@ public class ProductBasket {
     }
 
     public int fullPrice() {
-        if (basket.isEmpty()) return 0;
-        int fullPrice = 0;
-        for (LinkedList<Product> products : basket.values()) {
-            for(Product product : products) {
-                fullPrice += product.getPrice();
-            }
-        }
-        return fullPrice;
+        return basket.values().stream().flatMap(Collection::stream).mapToInt(Product::getPrice).sum();
     }
+
 
     public void printBasket() {
         StringBuilder basketPrint = new StringBuilder();
-        int countSpecial = 0;
-        for (Map.Entry<String, LinkedList<Product>> entry : basket.entrySet()) {
-            for(Product product : entry.getValue()) {
-                basketPrint.append(product).append("\n");
-                if(product.isSpecial()) countSpecial++;
-            }
-        }
+
+        basket.values().stream().flatMap(Collection::stream).forEach(product -> basketPrint.append(product).append("\n"));
+        int countSpecial = (int) basket.values().stream().flatMap(Collection::stream).filter(Product::isSpecial).count();
+
         if(countSpecial != 0) {
             basketPrint.append("Специальных товаров: ").append(countSpecial).append("\n");
         }
